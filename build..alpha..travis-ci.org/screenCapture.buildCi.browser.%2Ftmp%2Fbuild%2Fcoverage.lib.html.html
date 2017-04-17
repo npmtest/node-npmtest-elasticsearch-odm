@@ -1,0 +1,1462 @@
+<html lang="en"><head>
+    <title>Code coverage report for node-npmtest-elasticsearch-odm/node_modules/elasticsearch-odm/lib/query.js</title>
+    <meta charset="utf-8">
+    <style>
+        body, html {
+            margin:0; padding: 0;
+        }
+        body {
+            font-family: Arial, Helvetica;
+            font-size: 10pt;
+        }
+        div.header, div.footer {
+            background: #eee;
+            padding: 1em;
+        }
+        div.header {
+            height: 160px;
+            padding: 0 1em 0 1em;
+            z-index: 100;
+            position: fixed;
+            top: 0;
+            border-bottom: 1px solid #666;
+            width: 100%;
+        }
+        div.footer {
+            border-top: 1px solid #666;
+        }
+        div.body {
+            margin-top: 170px;
+        }
+        div.meta {
+            font-size: 90%;
+            text-align: center;
+        }
+        h1, h2, h3 {
+            font-weight: normal;
+        }
+        h1 {
+            font-size: 12pt;
+        }
+        h2 {
+            font-size: 10pt;
+        }
+        pre {
+            font-family: Menlo, Monaco, Consolas, Courier New, monospace;
+            margin: 0;
+            padding: 0;
+            font-size: 14px;
+            tab-size: 2;
+        }
+
+        div.path { font-size: 110%; }
+        div.path a:link, div.path a:visited { color: #000; }
+        table.coverage { border-collapse: collapse; margin:0; padding: 0 }
+
+        table.coverage td {
+            margin: 0;
+            padding: 0;
+            color: #111;
+            vertical-align: top;
+        }
+        table.coverage td.line-count {
+            width: 50px;
+            text-align: right;
+            padding-right: 5px;
+        }
+        table.coverage td.line-coverage {
+            color: #777 !important;
+            text-align: right;
+            border-left: 1px solid #666;
+            border-right: 1px solid #666;
+        }
+
+        table.coverage td.text {
+        }
+
+        table.coverage td span.cline-any {
+            display: inline-block;
+            padding: 0 5px;
+            width: 40px;
+        }
+        table.coverage td span.cline-neutral {
+            background: #eee;
+        }
+        table.coverage td span.cline-yes {
+            background: #b5d592;
+            color: #999;
+        }
+        table.coverage td span.cline-no {
+            background: #fc8c84;
+        }
+
+        .cstat-yes { color: #111; }
+        .cstat-no { background: #fc8c84; color: #111; }
+        .fstat-no { background: #ffc520; color: #111 !important; }
+        .cbranch-no { background:  yellow !important; color: #111; }
+
+        .cstat-skip { background: #ddd; color: #111; }
+        .fstat-skip { background: #ddd; color: #111 !important; }
+        .cbranch-skip { background: #ddd !important; color: #111; }
+
+        .missing-if-branch {
+            display: inline-block;
+            margin-right: 10px;
+            position: relative;
+            padding: 0 4px;
+            background: black;
+            color: yellow;
+        }
+
+        .skip-if-branch {
+            display: none;
+            margin-right: 10px;
+            position: relative;
+            padding: 0 4px;
+            background: #ccc;
+            color: white;
+        }
+
+        .missing-if-branch .typ, .skip-if-branch .typ {
+            color: inherit !important;
+        }
+
+        .entity, .metric { font-weight: bold; }
+        .metric { display: inline-block; border: 1px solid #333; padding: 0.3em; background: white; }
+        .metric small { font-size: 80%; font-weight: normal; color: #666; }
+
+        div.coverage-summary table { border-collapse: collapse; margin: 3em; font-size: 110%; }
+        div.coverage-summary td, div.coverage-summary table  th { margin: 0; padding: 0.25em 1em; border-top: 1px solid #666; border-bottom: 1px solid #666; }
+        div.coverage-summary th { text-align: left; border: 1px solid #666; background: #eee; font-weight: normal; }
+        div.coverage-summary th.file { border-right: none !important; }
+        div.coverage-summary th.pic { border-left: none !important; text-align: right; }
+        div.coverage-summary th.pct { border-right: none !important; }
+        div.coverage-summary th.abs { border-left: none !important; text-align: right; }
+        div.coverage-summary td.pct { text-align: right; border-left: 1px solid #666; }
+        div.coverage-summary td.abs { text-align: right; font-size: 90%; color: #444; border-right: 1px solid #666; }
+        div.coverage-summary td.file { text-align: right; border-left: 1px solid #666; white-space: nowrap;  }
+        div.coverage-summary td.pic { min-width: 120px !important;  }
+        div.coverage-summary a:link { color: #000; }
+        div.coverage-summary a:visited { color: #333; }
+        div.coverage-summary tfoot td { border-top: 1px solid #666; }
+
+        div.coverage-summary .yui3-datatable-sort-indicator, div.coverage-summary .dummy-sort-indicator {
+            height: 10px;
+            width: 7px;
+            display: inline-block;
+            margin-left: 0.5em;
+        }
+        div.coverage-summary .yui3-datatable-sort-indicator {
+            background: no-repeat scroll 0 0 transparent;
+        }
+        div.coverage-summary .yui3-datatable-sorted .yui3-datatable-sort-indicator {
+            background-position: 0 -20px;
+        }
+        div.coverage-summary .yui3-datatable-sorted-desc .yui3-datatable-sort-indicator {
+            background-position: 0 -10px;
+        }
+
+        .high { background: #b5d592 !important; }
+        .medium { background: #ffe87c !important; }
+        .low { background: #fc8c84 !important; }
+
+        span.cover-fill, span.cover-empty {
+            display:inline-block;
+            border:1px solid #444;
+            background: white;
+            height: 12px;
+        }
+        span.cover-fill {
+            background: #ccc;
+            border-right: 1px solid #444;
+        }
+        span.cover-empty {
+            background: white;
+            border-left: none;
+        }
+        span.cover-full {
+            border-right: none !important;
+        }
+        pre.prettyprint {
+            border: none !important;
+            padding: 0 !important;
+            margin: 0 !important;
+        }
+        .com { color: #999 !important; }
+        .ignore-none { color: #999; font-weight: normal; }
+
+    </style>
+</head>
+<body>
+<div class="header low">
+    <h1 style="font-weight: bold;">
+        <a href="https://github.com/npmtest/node-npmtest-elasticsearch-odm">npmtest-elasticsearch-odm (v0.0.1)</a>
+    </h1>
+    <h1>Code coverage report for <span class="entity">node-npmtest-elasticsearch-odm/node_modules/elasticsearch-odm/lib/query.js</span></h1>
+    <h2>
+        
+        Statements: <span class="metric">7.18% <small>(13 / 181)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        
+        
+        Branches: <span class="metric">0% <small>(0 / 115)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        
+        
+        Functions: <span class="metric">0% <small>(0 / 36)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        
+        
+        Lines: <span class="metric">7.56% <small>(13 / 172)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        
+        Ignored: <span class="metric"><span class="ignore-none">none</span></span> &nbsp;&nbsp;&nbsp;&nbsp;
+    </h2>
+    <div class="path"><a href="../../../../index.html">All files</a> » <a href="index.html">node-npmtest-elasticsearch-odm/node_modules/elasticsearch-odm/lib/</a> » query.js</div>
+</div>
+<div class="body">
+<pre><table class="coverage">
+<tbody><tr><td class="line-count">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135
+136
+137
+138
+139
+140
+141
+142
+143
+144
+145
+146
+147
+148
+149
+150
+151
+152
+153
+154
+155
+156
+157
+158
+159
+160
+161
+162
+163
+164
+165
+166
+167
+168
+169
+170
+171
+172
+173
+174
+175
+176
+177
+178
+179
+180
+181
+182
+183
+184
+185
+186
+187
+188
+189
+190
+191
+192
+193
+194
+195
+196
+197
+198
+199
+200
+201
+202
+203
+204
+205
+206
+207
+208
+209
+210
+211
+212
+213
+214
+215
+216
+217
+218
+219
+220
+221
+222
+223
+224
+225
+226
+227
+228
+229
+230
+231
+232
+233
+234
+235
+236
+237
+238
+239
+240
+241
+242
+243
+244
+245
+246
+247
+248
+249
+250
+251
+252
+253
+254
+255
+256
+257
+258
+259
+260
+261
+262
+263
+264
+265
+266
+267
+268
+269
+270
+271
+272
+273
+274
+275
+276
+277
+278
+279
+280
+281
+282
+283
+284
+285
+286
+287
+288
+289
+290
+291
+292
+293
+294
+295
+296
+297
+298
+299
+300
+301
+302
+303
+304
+305
+306
+307
+308
+309
+310
+311
+312
+313
+314
+315
+316
+317
+318
+319
+320
+321
+322
+323
+324
+325
+326
+327
+328
+329
+330
+331
+332
+333
+334
+335
+336
+337
+338
+339
+340
+341
+342
+343
+344
+345
+346
+347
+348
+349
+350
+351
+352
+353
+354
+355
+356
+357
+358
+359
+360
+361
+362
+363
+364
+365
+366
+367
+368
+369
+370
+371
+372
+373
+374
+375
+376
+377
+378
+379
+380
+381
+382
+383
+384
+385
+386
+387
+388
+389
+390
+391
+392
+393
+394
+395
+396
+397
+398
+399
+400
+401
+402
+403
+404
+405
+406
+407
+408
+409
+410
+411
+412
+413
+414</td><td class="line-coverage"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">'use strict';
+&nbsp;
+var _ = require('lodash'),
+    logger = require('./logger'),
+    utils = require('./utils'),
+    dot = require('dot-object');
+&nbsp;
+module.exports = {
+  QueryPromise: QueryPromise,
+&nbsp;
+  parseRequest: parseRequest,
+  parseResponse: parseResponse,
+&nbsp;
+  addTermFilters:  addTermFilters,
+  addPagination: addPagination,
+  addSorts: addSorts,
+  addPopulations: addPopulations,
+  addExistenceFilters: addExistenceFilters
+};
+&nbsp;
+<span class="fstat-no" title="function not covered">function QueryPromise(query, func){</span>
+  // We wrap a promise for the query. To allow chaining of methonds
+  // in between the 'then-able'. func argument takes a single query argument
+  // and returns a promise that is resolved with the found document.
+  // This allows calls like, .find().sort().then(...)
+&nbsp;
+<span class="cstat-no" title="statement not covered">  var self = this;</span>
+<span class="cstat-no" title="statement not covered">  self.q = _.cloneDeep(query);</span>
+<span class="cstat-no" title="statement not covered">  self.p = {</span>
+    resolve: <span class="fstat-no" title="function not covered">function(){</span>},
+    reject: <span class="fstat-no" title="function not covered">function(){</span>}
+  };
+<span class="cstat-no" title="statement not covered">  self.isExecuted = false;</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered">  self._exec = <span class="fstat-no" title="function not covered">function(){</span></span>
+<span class="cstat-no" title="statement not covered">    if(!self.isExecuted){</span>
+<span class="cstat-no" title="statement not covered">      self.isExecuted = true;</span>
+&nbsp;
+      /**
+      if(self.q.body){;
+        process.nextTick(function(){
+          console.log(utils.inspect(self.q.body.query.filtered, { showHidden: true, depth: null }));
+        });
+      }
+      */
+&nbsp;
+<span class="cstat-no" title="statement not covered">      func(self.q)</span>
+      .then(<span class="fstat-no" title="function not covered">function(res){</span>
+<span class="cstat-no" title="statement not covered">        self.p.resolve(res);</span>
+      })
+      .catch(<span class="fstat-no" title="function not covered">function(err){</span>
+<span class="cstat-no" title="statement not covered">        self.p.reject(err);</span>
+      });
+    }
+  };
+&nbsp;
+<span class="cstat-no" title="statement not covered">  self.then = <span class="fstat-no" title="function not covered">function(resolve, reject){</span></span>
+<span class="cstat-no" title="statement not covered">    var promise = new Promise(<span class="fstat-no" title="function not covered">function(success, error){</span></span>
+<span class="cstat-no" title="statement not covered">      self.p.resolve = success;</span>
+<span class="cstat-no" title="statement not covered">      self.p.reject = error;</span>
+<span class="cstat-no" title="statement not covered">      self._exec();</span>
+    });
+&nbsp;
+<span class="cstat-no" title="statement not covered">    return promise.then(resolve, reject);</span>
+  };
+&nbsp;
+<span class="cstat-no" title="statement not covered">  self.populate = <span class="fstat-no" title="function not covered">function(value){</span></span>
+<span class="cstat-no" title="statement not covered">    addPopulations(self.q, value);</span>
+<span class="cstat-no" title="statement not covered">    return self;</span>
+  };
+&nbsp;
+<span class="cstat-no" title="statement not covered">  self.must = <span class="fstat-no" title="function not covered">function(value){</span></span>
+<span class="cstat-no" title="statement not covered">    addTermFilters(self.q, value);</span>
+<span class="cstat-no" title="statement not covered">    return self;</span>
+  };
+&nbsp;
+<span class="cstat-no" title="statement not covered">  self.missing = <span class="fstat-no" title="function not covered">function(value){</span></span>
+<span class="cstat-no" title="statement not covered">    addExistenceFilters(self.q, value);</span>
+<span class="cstat-no" title="statement not covered">    return self;</span>
+  };
+&nbsp;
+<span class="cstat-no" title="statement not covered">  self.exists = <span class="fstat-no" title="function not covered">function(value){</span></span>
+<span class="cstat-no" title="statement not covered">    addExistenceFilters(self.q, null, value);</span>
+<span class="cstat-no" title="statement not covered">    return self;</span>
+  };
+&nbsp;
+<span class="cstat-no" title="statement not covered">  self.not = <span class="fstat-no" title="function not covered">function(value){</span></span>
+<span class="cstat-no" title="statement not covered">    addTermFilters(self.q, null, value);</span>
+<span class="cstat-no" title="statement not covered">    return self;</span>
+  };
+&nbsp;
+<span class="cstat-no" title="statement not covered">  self.sort = <span class="fstat-no" title="function not covered">function(value){</span></span>
+<span class="cstat-no" title="statement not covered">    addSorts(self.q, value);</span>
+<span class="cstat-no" title="statement not covered">    return self;</span>
+  };
+&nbsp;
+  // If .then() is never called, make sure we execute the query.
+  // This allows the '.findAndRemove' type queries to still work
+  // even when .then() is never called.
+<span class="cstat-no" title="statement not covered">  process.nextTick(<span class="fstat-no" title="function not covered">function(){</span></span>
+<span class="cstat-no" title="statement not covered">    self._exec();</span>
+  });
+}
+&nbsp;
+<span class="fstat-no" title="function not covered">function PagedResponse(data){</span>
+<span class="cstat-no" title="statement not covered">  var self = this;</span>
+<span class="cstat-no" title="statement not covered">  _.assign(self, data);</span>
+}
+PagedResponse.prototype.toObject = <span class="fstat-no" title="function not covered">function(){</span>
+<span class="cstat-no" title="statement not covered">  return {</span>
+    total: this.total,
+    hits: _.map(this.hits, <span class="fstat-no" title="function not covered">function(h){<span class="cstat-no" title="statement not covered"></span>return h.toObject(); </span>}),
+    page: this.page,
+    pages: this.pages
+  };
+};
+&nbsp;
+PagedResponse.prototype.toJSON = <span class="fstat-no" title="function not covered">function(){</span>
+<span class="cstat-no" title="statement not covered">  return this.toObject();</span>
+};
+&nbsp;
+<span class="fstat-no" title="function not covered">function parseRequest(indices, types, matches, options){</span>
+<span class="cstat-no" title="statement not covered">  options = options || {};</span>
+<span class="cstat-no" title="statement not covered">  var req = {</span>
+    index: indices,
+    type: types,
+    body: {
+      query: {match_all: {}}
+    }
+  };
+&nbsp;
+<span class="cstat-no" title="statement not covered">  var allowedOptions = [];</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered">  if(options.id){</span>
+<span class="cstat-no" title="statement not covered">    allowedOptions = [</span>
+      'id',
+      'fields',
+      'populate'
+    ];
+  }else <span class="cstat-no" title="statement not covered">if(options.ids){</span>
+<span class="cstat-no" title="statement not covered">    allowedOptions = [</span>
+      'ids',
+      'fields',
+      'populate',
+      'sort',
+      'page',
+      'per_page'
+    ];
+  }else{
+<span class="cstat-no" title="statement not covered">    allowedOptions = [</span>
+      'missing',
+      'exists',
+      'must',
+      'not',
+      'fields',
+      'sort',
+      'page',
+      'per_page',
+      'q',
+      'populate'
+    ];
+  }
+<span class="cstat-no" title="statement not covered">  options = _.pick(options, allowedOptions);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered">  if(options.id) <span class="cstat-no" title="statement not covered">req.id = options.id;</span></span>
+<span class="cstat-no" title="statement not covered">  if(options.ids) {</span>
+<span class="cstat-no" title="statement not covered">    req.body.query = {</span>
+      ids: {
+        values: options.ids
+      }
+    };
+  }
+&nbsp;
+<span class="cstat-no" title="statement not covered">  if(!_.isEmpty(matches)){</span>
+<span class="cstat-no" title="statement not covered">    if(_.isString(matches)) <span class="cstat-no" title="statement not covered">options.q = matches;</span></span>
+<span class="cstat-no" title="statement not covered">    if(_.isPlainObject(matches)) <span class="cstat-no" title="statement not covered">options.must = _.merge({}, options.must, matches);</span></span>
+  }
+&nbsp;
+<span class="cstat-no" title="statement not covered">  if(options.q &amp;&amp; _.isString(options.q)){</span>
+    // escape any special characters in the query string
+    // see https://www.elastic.co/guide/en/elasticsearch/reference/current/query-dsl-query-string-query.html
+<span class="cstat-no" title="statement not covered">    options.q = utils.escapeQueryStringQuery(options.q);</span>
+<span class="cstat-no" title="statement not covered">    req.body.query = { query_string: {query: options.q} };</span>
+  }
+&nbsp;
+<span class="cstat-no" title="statement not covered">  if(options.fields){</span>
+<span class="cstat-no" title="statement not covered">    req.body.fields = _.isArray(options.fields) ? options.fields : [options.fields];</span>
+  }
+&nbsp;
+<span class="cstat-no" title="statement not covered">  if(options.sort){</span>
+<span class="cstat-no" title="statement not covered">    addSorts(req, options.sort);</span>
+  }
+&nbsp;
+<span class="cstat-no" title="statement not covered">  if(options.page || options.per_page){</span>
+<span class="cstat-no" title="statement not covered">    addPagination(req, options.page, options.per_page);</span>
+  }
+&nbsp;
+<span class="cstat-no" title="statement not covered">  if(options.must || options.not){</span>
+<span class="cstat-no" title="statement not covered">    addTermFilters(req, options.must, options.not, options.missing, options.exists);</span>
+  }
+&nbsp;
+<span class="cstat-no" title="statement not covered">  if(options.missing || options.exists){</span>
+<span class="cstat-no" title="statement not covered">    addExistenceFilters(req, options.missing, options.exists);</span>
+  }
+&nbsp;
+<span class="cstat-no" title="statement not covered">  if(!req.hasOwnProperty('size')) {</span>
+    // NOTE: we use a high number as our default to return everything
+    // because mongoose also does so.
+<span class="cstat-no" title="statement not covered">    req.size = 999999;</span>
+<span class="cstat-no" title="statement not covered">    req.from = 0;</span>
+  }
+&nbsp;
+<span class="cstat-no" title="statement not covered">  return req;</span>
+}
+&nbsp;
+<span class="fstat-no" title="function not covered">function parseResponse(options, query, res){</span>
+<span class="cstat-no" title="statement not covered">  if(query.body &amp;&amp; query.body.fields){</span>
+    // elasticsearch wraps field queries in its own body, so we clean it up a bit.
+    // all in the name of an easy to use API
+<span class="cstat-no" title="statement not covered">    res.hits.hits = _.chain(res.hits.hits)</span>
+      .pluck('fields')
+      .map(<span class="fstat-no" title="function not covered">function(_v){</span>
+<span class="cstat-no" title="statement not covered">        return _.map(_v, <span class="fstat-no" title="function not covered">function(v, k){</span></span>
+<span class="cstat-no" title="statement not covered">          var item = {};</span>
+<span class="cstat-no" title="statement not covered">          if(_.isArray(v) &amp;&amp; v.length === 1){</span>
+<span class="cstat-no" title="statement not covered">            item[k] = v[0];</span>
+          }else{
+<span class="cstat-no" title="statement not covered">            item[k] = v;</span>
+          }
+<span class="cstat-no" title="statement not covered">          return item;</span>
+        });
+      })
+      .flatten()
+      .value();
+  }
+&nbsp;
+  // if _source exists, set the item as _source
+<span class="cstat-no" title="statement not covered">  res.hits.hits = _.map(res.hits.hits, <span class="fstat-no" title="function not covered">function(v){</span></span>
+<span class="cstat-no" title="statement not covered">    return v._source || v;</span>
+  });
+&nbsp;
+<span class="cstat-no" title="statement not covered">  if(options &amp;&amp; (options.page || options.per_page)){</span>
+<span class="cstat-no" title="statement not covered">    return new PagedResponse({</span>
+      total: res.hits.total,
+      hits: res.hits.hits,
+      page: options.page,
+      pages: Math.ceil(res.hits.total / query.size)
+    });
+  }else{
+<span class="cstat-no" title="statement not covered">    return res.hits.hits;</span>
+  }
+&nbsp;
+}
+&nbsp;
+<span class="fstat-no" title="function not covered">function addExistenceFilters(req, missingFilters, existsFilters){</span>
+  // see https://www.elastic.co/guide/en/elasticsearch/reference/current/query-dsl-missing-filter.html
+  // and https://www.elastic.co/guide/en/elasticsearch/reference/current/query-dsl-filters.html
+&nbsp;
+  // is this a filtered query, or a regulat?
+<span class="cstat-no" title="statement not covered">  var boolFilter = dot.pick('body.query.filtered', req);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered">  var getPreviousFilters = <span class="fstat-no" title="function not covered">function(){</span></span>
+<span class="cstat-no" title="statement not covered">    var andFilters;</span>
+<span class="cstat-no" title="statement not covered">    if(boolFilter){</span>
+<span class="cstat-no" title="statement not covered">      andFilters = dot.pick('body.query.filtered.query.constant_score.filter.and', req);</span>
+    }else{
+<span class="cstat-no" title="statement not covered">      andFilters = dot.pick('body.query.constant_score.filter.and', req);</span>
+    }
+<span class="cstat-no" title="statement not covered">    return andFilters || [];</span>
+  };
+&nbsp;
+<span class="cstat-no" title="statement not covered">  var query = {</span>
+    constant_score: {
+      filter: {
+        and: getPreviousFilters()
+      }
+    }
+  };
+&nbsp;
+<span class="cstat-no" title="statement not covered">  var makeFilter = <span class="fstat-no" title="function not covered">function(name, filters){</span>;</span>
+<span class="cstat-no" title="statement not covered">    if(filters){</span>
+<span class="cstat-no" title="statement not covered">      filters = _.isArray(filters) ? filters : [filters];</span>
+<span class="cstat-no" title="statement not covered">      _.forEach(filters, <span class="fstat-no" title="function not covered">function(v){</span></span>
+<span class="cstat-no" title="statement not covered">        var f = {};</span>
+<span class="cstat-no" title="statement not covered">        f[name] = {field: v};</span>
+<span class="cstat-no" title="statement not covered">        query.constant_score.filter.and.push(f);</span>
+      });
+    }
+  };
+&nbsp;
+<span class="cstat-no" title="statement not covered">  makeFilter('missing', missingFilters);</span>
+<span class="cstat-no" title="statement not covered">  makeFilter('exists', existsFilters);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered">  if(boolFilter){</span>
+<span class="cstat-no" title="statement not covered">    req.body.query.filtered.query = query;</span>
+  }else{
+<span class="cstat-no" title="statement not covered">    req.body.query = query;</span>
+  }
+}
+&nbsp;
+<span class="fstat-no" title="function not covered">function addTermFilters(req, mustFilters, notFilters){</span>
+<span class="cstat-no" title="statement not covered">  var filter = {</span>
+    bool: {
+      must: [],
+      must_not: []
+    }
+  };
+&nbsp;
+<span class="cstat-no" title="statement not covered">  var makeTermFilter = <span class="fstat-no" title="function not covered">function(v, k){</span></span>
+<span class="cstat-no" title="statement not covered">    var f = {};</span>
+<span class="cstat-no" title="statement not covered">    if(_.isArray(v)){</span>
+<span class="cstat-no" title="statement not covered">      f.terms = {};</span>
+<span class="cstat-no" title="statement not covered">      f.terms[k] = v;</span>
+    }else{
+<span class="cstat-no" title="statement not covered">      f.term = {};</span>
+<span class="cstat-no" title="statement not covered">      f.term[k] = v;</span>
+    }
+<span class="cstat-no" title="statement not covered">    return f;</span>
+  };
+&nbsp;
+<span class="cstat-no" title="statement not covered">  filter.bool.must = _.map(mustFilters, makeTermFilter);</span>
+<span class="cstat-no" title="statement not covered">  filter.bool.must_not = _.map(notFilters, makeTermFilter);</span>
+&nbsp;
+  // Remove any empty filters, Elasticsearch will throw an error.
+<span class="cstat-no" title="statement not covered">  _.each(filter.bool, <span class="fstat-no" title="function not covered">function(v, k) {</span></span>
+<span class="cstat-no" title="statement not covered">    if(!v || !v.length) <span class="cstat-no" title="statement not covered">delete filter.bool[k];</span></span>
+  });
+&nbsp;
+  // No filters found? return now.
+<span class="cstat-no" title="statement not covered">  if(_.isEmpty(filter.bool)) <span class="cstat-no" title="statement not covered">return void 0;</span></span>
+&nbsp;
+  // Is this a new filtered query, or an existing to merge with?
+<span class="cstat-no" title="statement not covered">  var boolFilter = dot.pick('body.query.filtered.filter.bool', req);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered">  var mergeFilter = <span class="fstat-no" title="function not covered">function(filterName, data){</span></span>
+<span class="cstat-no" title="statement not covered">    if( _.isArray(boolFilter[filterName]) ){</span>
+<span class="cstat-no" title="statement not covered">      req.body.query.filtered.filter.bool[filterName] = req.body.query.filtered.filter.bool[filterName].concat(data);</span>
+    }else <span class="cstat-no" title="statement not covered">if( _.isPlainObject(boolFilter[filterName]) ){</span>
+<span class="cstat-no" title="statement not covered">      req.body.query.filtered.filter.bool[filterName] = [boolFilter[filterName]];</span>
+<span class="cstat-no" title="statement not covered">      req.body.query.filtered.filter.bool[filterName] = req.body.query.filtered.filter.bool[filterName].concat(data);</span>
+    }else{
+<span class="cstat-no" title="statement not covered">      req.body.query.filtered.filter.bool[filterName] = data;</span>
+    }
+  };
+&nbsp;
+<span class="cstat-no" title="statement not covered">  if(boolFilter){</span>
+<span class="cstat-no" title="statement not covered">    if(filter.bool.must) <span class="cstat-no" title="statement not covered">mergeFilter('must', filter.bool.must);</span></span>
+<span class="cstat-no" title="statement not covered">    if(filter.bool.must_not) <span class="cstat-no" title="statement not covered">mergeFilter('must_not', filter.bool.must_not);</span></span>
+  }else{
+<span class="cstat-no" title="statement not covered">    req.body.query = {</span>
+      filtered: {
+        query: req.body.query,
+        filter: filter
+      }
+    };
+  }
+&nbsp;
+  ///Pretty sure elasticsearch doesn't allow arrays for 'must' when only one rule is added.
+<span class="cstat-no" title="statement not covered">  if(req.body.query.filtered.filter.bool.must</span>
+    &amp;&amp; req.body.query.filtered.filter.bool.must.length === 1){
+<span class="cstat-no" title="statement not covered">    req.body.query.filtered.filter.bool.must = req.body.query.filtered.filter.bool.must[0];</span>
+  }
+<span class="cstat-no" title="statement not covered">  if(req.body.query.filtered.filter.bool.must_not &amp;&amp; req.body.query.filtered.filter.bool.must_not.length === 1){</span>
+<span class="cstat-no" title="statement not covered">    req.body.query.filtered.filter.bool.must_not = req.body.query.filtered.filter.bool.must_not[0];</span>
+  }
+&nbsp;
+}
+&nbsp;
+<span class="fstat-no" title="function not covered">function addPagination(req, page, per_page){</span>
+<span class="cstat-no" title="statement not covered">  if(!page &amp;&amp; !per_page) <span class="cstat-no" title="statement not covered">return void 0;</span></span>
+<span class="cstat-no" title="statement not covered">  page = isNaN(parseInt(page)) || (page &lt;= 0) ? 1 : parseInt(page);</span>
+<span class="cstat-no" title="statement not covered">  per_page = isNaN(parseInt(per_page)) || (per_page &lt;= 1) ? 10 : parseInt(per_page);</span>
+<span class="cstat-no" title="statement not covered">  req.from =  (page - 1) * per_page;</span>
+<span class="cstat-no" title="statement not covered">  req.size = per_page;</span>
+}
+&nbsp;
+<span class="fstat-no" title="function not covered">function addSorts(req, sorts){</span>
+<span class="cstat-no" title="statement not covered">  sorts = _.isString(sorts) ? [sorts] : sorts;</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered">  var result = {</span>
+    sort: []
+  };
+&nbsp;
+<span class="cstat-no" title="statement not covered">  var makeSort = <span class="fstat-no" title="function not covered">function(sort){</span></span>
+<span class="cstat-no" title="statement not covered">    var item = {}, order;</span>
+<span class="cstat-no" title="statement not covered">    if(_.startsWith(sort, '-')){</span>
+<span class="cstat-no" title="statement not covered">      sort = sort.substring(1);</span>
+<span class="cstat-no" title="statement not covered">      order = 'desc';</span>
+    }else{
+<span class="cstat-no" title="statement not covered">      order = 'asc';</span>
+    }
+<span class="cstat-no" title="statement not covered">    item[sort] = {order: order, ignore_unmapped: true};</span>
+<span class="cstat-no" title="statement not covered">    return item;</span>
+  };
+&nbsp;
+<span class="cstat-no" title="statement not covered">  result.sort = _.map(sorts, makeSort);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered">  if(result.sort.length === 1){</span>
+<span class="cstat-no" title="statement not covered">    result.sort = result.sort[0];</span>
+  }
+&nbsp;
+<span class="cstat-no" title="statement not covered">  if(_.isArray(req.body.sort)){</span>
+<span class="cstat-no" title="statement not covered">    req.body.sort = req.body.sort.concat(result.sort);</span>
+  }else{
+<span class="cstat-no" title="statement not covered">    req.body.sort = result.sort;</span>
+  }
+}
+&nbsp;
+<span class="fstat-no" title="function not covered">function addPopulations(req, value){</span>
+<span class="cstat-no" title="statement not covered">  if(!req.populate) <span class="cstat-no" title="statement not covered">req.populate = [];</span></span>
+<span class="cstat-no" title="statement not covered">  req.populate.push(value);</span>
+}
+&nbsp;
+&nbsp;</pre></td></tr>
+</tbody></table></pre>
+</div>
+<div class="footer">
+    <div class="meta">Generated by <a href="https://github.com/kaizhu256/node-utility2" target="_blank">utility2</a> at Mon Apr 17 2017 19:59:57 GMT+0000 (UTC)</div>
+</div>
+
+
+</body></html>

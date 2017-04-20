@@ -1,4 +1,7 @@
-# test coverage for  [elasticsearch-odm (v1.1.0)](https://github.com/zackiles/elasticsearch-odm#readme)  [![npm package](https://img.shields.io/npm/v/npmtest-elasticsearch-odm.svg?style=flat-square)](https://www.npmjs.org/package/npmtest-elasticsearch-odm) [![travis-ci.org build-status](https://api.travis-ci.org/npmtest/node-npmtest-elasticsearch-odm.svg)](https://travis-ci.org/npmtest/node-npmtest-elasticsearch-odm)
+# npmtest-elasticsearch-odm
+
+#### basic test coverage for  [elasticsearch-odm (v1.1.0)](https://github.com/zackiles/elasticsearch-odm#readme)  [![npm package](https://img.shields.io/npm/v/npmtest-elasticsearch-odm.svg?style=flat-square)](https://www.npmjs.org/package/npmtest-elasticsearch-odm) [![travis-ci.org build-status](https://api.travis-ci.org/npmtest/node-npmtest-elasticsearch-odm.svg)](https://travis-ci.org/npmtest/node-npmtest-elasticsearch-odm)
+
 #### Like Mongoose but for Elasticsearch. Define models, preform CRUD operations, and build advanced search queries.
 
 [![NPM](https://nodei.co/npm/elasticsearch-odm.png?downloads=true&downloadRank=true&stars=true)](https://www.npmjs.com/package/elasticsearch-odm)
